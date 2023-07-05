@@ -4,7 +4,6 @@ const express = require("express"),
        cors = require("cors");
 const bodyParser = require('body-parser');
 const fsPromises = require("fs").promises;
-//const fs = require("fs");
 const todoDBName = "tododb";
 const useCloudant = false;
 
@@ -12,13 +11,11 @@ const useCloudant = false;
 
 //Init code for Cloudant
 
-
+//Initialize backend
 app.use(cors());
 app.use(bodyParser.json({ extended: true }));
 
 app.listen(port, () => console.log("Backend server live on " + port));
-
-
 
 app.get("/", (request, response) => {
     response.send({ message: "Connected to Backend server!" });

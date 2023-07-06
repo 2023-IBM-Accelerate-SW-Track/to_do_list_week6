@@ -194,6 +194,8 @@ If you want to search for a task name with a space in it, for example "hello wor
 
 ### Optional - Integration with Cloudant
 
+*Note for this section you'll need an IBM Cloud account, so this might be something to try in later weeks when you will provision IBM Cloud accounts*
+
 #### Create a Cloudant DB
 
 1. Log in to IBM Cloud with your free/trial account.

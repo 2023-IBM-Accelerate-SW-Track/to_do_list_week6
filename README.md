@@ -192,9 +192,10 @@ If you want to search for a task name with a space in it, for example "hello wor
 
 6. Observe the returned value in the div section below the search UI, it will be updated in real-time after we submit the form, returning with the data obtained from the backend.
 
-### Integration with Cloudant
+### Optional - Integration with Cloudant
 
 #### Create a Cloudant DB
+
 1. Log in to IBM Cloud with your free/trial account.
 
 2. Click "Catalog" along the top right of the page.
@@ -231,7 +232,7 @@ npm install @ibm-cloud/cloudant
 2. Create a cloudant credential with a role of 'writer', get API key from cloud console, use the drop down and copy the "apikey" field value
 
 
-2. Set our cloudant environment variables, in a command window (this process may vary depending on what type of shell you're using) type the following (inserting the values you copied in the previous section):
+3. Set our cloudant environment variables, in a command window (this process may vary depending on what type of shell you're using) type the following (inserting the values you copied in the previous section):
 
 ```
 CLOUDANT_URL= <the value from step 7 in the previous section>
@@ -240,7 +241,7 @@ CLOUDANT_APIKEY=<the value from step 9 in the previous section>
 export CLOUDANT_APIKEY
 ```
 
-2. Add the following to end of server.js after the '// Add initDB function here' code block:
+4. Add the following to end of server.js after the '// Add initDB function here' code block:
 
 ```
 async function initDB ()
@@ -268,7 +269,7 @@ async function initDB ()
   }
 };
 ```
-4. Add toward the top of server.js under the "//Init code for Cloudant" comment
+5. Add toward the top of server.js under the "//Init code for Cloudant" comment
 
 ```
 const {CloudantV1} = require('@ibm-cloud/cloudant');
@@ -278,28 +279,28 @@ if (useCloudant)
 }
 ```
 
-5. start the backend
+6. start the backend
 ```
 npm start
 ```
 
-6. In server.js near the top, set the useCloudant value from 'false' to 'true', like so:
+7. In server.js near the top, set the useCloudant value from 'false' to 'true', like so:
 
 ```
 const useCloudant = true;
 ```
 
-7. What happened? You likely got an error stating "Access is denied due to invalid credentials.", if you look at the cloudant IAM roles [documentation](https://cloud.ibm.com/docs/Cloudant?topic=Cloudant-managing-access-for-cloudant#ibm-cloudant-roles-ai) "writer" does not have permission to create databases. Go to the cloudant management page in IBM cloud, create a new credential with a role of "manager". Copy the apikey value from this new role and set your environment variable to it.
+8. What happened? You likely got an error stating "Access is denied due to invalid credentials.", if you look at the cloudant IAM roles [documentation](https://cloud.ibm.com/docs/Cloudant?topic=Cloudant-managing-access-for-cloudant#ibm-cloudant-roles-ai) "writer" does not have permission to create databases. Go to the cloudant management page in IBM cloud, create a new credential with a role of "manager". Copy the apikey value from this new role and set your environment variable to it.
 
 
-8. stop the backend service, ctrl-c in the window its running in
+9. stop the backend service, ctrl-c in the window its running in
 
-9. Start the backend service again:
+10. Start the backend service again:
 ```
 npm start
 ```
 
-10. You should now see the database being create on startup:
+11. You should now see the database being create on startup:
 ```
 npm start
 
@@ -310,9 +311,8 @@ Backend server live on 8080
 "tododb" database created.
 ```
 
+#### Store a Todo task in a Cloudant DB
 
-
-### Store a Todo task in a Cloudant DB
 1. In the server.js file add the following to the addItem function after the '//begin here for cloudant' code block:
 ```
             // Setting `_id` for the document is optional when "postDocument" function is used for CREATE.
@@ -333,7 +333,8 @@ Backend server live on 8080
             });
             console.log('Successfully wrote to cloudant DB');
 ```
-### Return all items from Cloudant
+#### Return all items from Cloudant
+
 1. in the server.js file we're going to add code for cloudant to retrieve, but in an if/else block, if we are using cloudant go to cloudant to retrieve, otherwise use the local file as before. To make these changes easily, replace the entire getItems function in server.js as follows:
 
 ```
@@ -365,7 +366,7 @@ async function getItems (request, response) {
 ```
 
 
-### Search a Todo Task in Cloudant
+#### Search a Todo Task in Cloudant
 
 1. create index and design document in cloudant
 
@@ -402,7 +403,7 @@ async function searchItems (request, response) {
 };
 ```
 
-### Enable Cloudant code and test
+#### Enable Cloudant code and test
 1. If you haven't already set useCloudant to 'true', in server.js near the top, set the useCloudant value from 'false' to 'true', like so:
 
 ```
@@ -430,7 +431,9 @@ Successfully wrote to cloudant DB
 6. Click on the TodoPage menu link at the top of the webpage:
 
 7. Click on the SearchPage menu link at the top of the webpage, input a task name to search for and observe results returned from cloudant:
+
 ## Pre-session Material
+
 What is a REST API
 https://www.redhat.com/en/topics/api/what-is-a-rest-api
 

@@ -126,18 +126,15 @@ If you want to search for a task name with a space in it, for example "hello wor
 ```
     npm install
     npm audit fix --force
-
 ```
 2. Start the front end by running the following command in the *to-do-list* directory:
 ```
     npm start
-
 ```
 
 3. Open *another* terminal or command window and go to the *to-do-list/backend* directory and run the backend:
 ```
     npm start
-
 ```
 
 4. Go to a browser and open the front-end, if not open already, http://localhost:3000, this should bring up the home page. Go to the top navigation bar and click on the "TodoPage"
@@ -178,18 +175,15 @@ If you want to search for a task name with a space in it, for example "hello wor
 ```
     npm install
     npm audit fix --force
-
 ```
 2. Start the front end by running the following command in the *to-do-list* directory:
 ```
     npm start
-
 ```
 
 3. Open *another* terminal or command window and go to the *to-do-list/backend* directory and run the backend:
 ```
     npm start
-
 ```
 
 4. Go to a browser and open the front-end, if not open already, http://localhost:3000, this should bring up the home page. Go to the top navigation bar and click on the "SearchPage" link.
@@ -273,7 +267,6 @@ async function initDB ()
 
   }
 };
-
 ```
 4. Add toward the top of server.js under the "//Init code for Cloudant" comment
 
